@@ -1,17 +1,16 @@
 import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ContextGlobal } from './utils/global.context';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material';
+import { routes } from './utils/routes';
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Navbar = () => {
 
-  const navigate = useNavigate();
-
   const { state, dispatch } = useContext(ContextGlobal);
-
 
   const toggleTheme = () => {
     const newTheme = state.theme === 'light' ? 'dark' : 'light';
@@ -21,17 +20,21 @@ const Navbar = () => {
 
 
   return (
-    <nav>
-      {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
-      {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
-      <button onClick={() => navigate(-1)}>Regresar</button>
-      <button onClick={() => navigate('/')}>Home</button>
-      <button onClick={() => navigate('/favs')}>Favoritos</button>
-      <button onClick={() => navigate('/contact')}>Contacto</button>
-      <button onClick={toggleTheme}>
-        {state.theme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
-      </button>
-    </nav>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" style={{ flexGrow: 1 }}>
+          Tu Dentista
+        </Typography>
+        <Button color="inherit" component={Link} to={routes.home}>Home</Button>
+        <Button color="inherit" component={Link} to={routes.favs}>Favoritos</Button>
+        <Button color="inherit" component={Link} to={routes.contact}>Contacto</Button>
+        <Button color="inherit" onClick={toggleTheme}>
+          {state.theme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+        </Button>
+
+      </Toolbar>
+    </AppBar>
+
   )
 }
 
