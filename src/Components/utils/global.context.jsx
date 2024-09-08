@@ -8,7 +8,11 @@ const reducer = (state, action) => {
     case "GET_DENTISTS":
       return { ...state, dentists: action.dentists };
     case "ADD_FAV":
+      localStorage.setItem('favs', JSON.stringify([...state.favs, action.fav]));
       return { ...state, favs: [...state.favs, action.fav] };
+    case "REMOVE_FAV":
+        localStorage.setItem('favs', JSON.stringify(state.favs.filter((fav) => fav.id !== action.fav.id)));
+        return { ...state, favs: state.favs.filter((fav) => fav.id !== action.fav.id) };
     default:
       throw new Error(`Acción no soportada: ${action.type}`);
   }

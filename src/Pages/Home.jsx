@@ -6,7 +6,6 @@ import Card from '../Components/Card';
 const Home = () => {
 
   const { state } = useGlobalContext();
-  console.log("home: ", state);
   
   const themeClass = state.theme === 'dark' ? 'dark-theme' : 'light-theme';
 

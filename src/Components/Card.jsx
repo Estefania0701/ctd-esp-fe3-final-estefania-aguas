@@ -2,15 +2,23 @@ import React from "react";
 import { useGlobalContext } from "./utils/global.context";
 import { Link } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import '../Styles/Card.css';
 
 const Card = ({dentist}) => {
 
-  const {dispatch} = useGlobalContext();
+  const {state, dispatch} = useGlobalContext();
+
+  const isFav = state.favs.find((fav) => fav.id === dentist.id);
 
   const addFav = ()=>{
     // Aqui iria la logica para agregar la Card en el localStorage
-    dispatch({type: 'ADD_FAV', fav: dentist});
-    localStorage.setItem('fav', JSON.stringify(dentist));
+    if (isFav) {
+      dispatch({type: 'REMOVE_FAV', fav: dentist});
+    } else {
+        dispatch({type: 'ADD_FAV', fav: dentist});
+    }
   }
 
   return (
@@ -18,15 +26,16 @@ const Card = ({dentist}) => {
         {/* En cada card deberan mostrar en name - username y el id */}
         
         <PersonIcon />
-        <h3>{dentist.name} - {dentist.username}</h3>
-        <p>{dentist.id}</p>
-        {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
         <Link to={`/dentist/${dentist.id}`}>
-          <button>Ver detalles</button>
+            <h3 className="card-title">{dentist.name}</h3>
         </Link>
+        <p>{dentist.username}</p>
+        {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
 
         {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-        <button onClick={addFav} className="favButton">Add fav</button>
+        <button onClick={addFav} className="favButton">
+            {isFav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        </button>
     </div>
   );
 };
