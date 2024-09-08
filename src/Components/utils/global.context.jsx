@@ -21,8 +21,8 @@ const reducer = (state, action) => {
 export const initialState = {
   theme: localStorage.getItem('theme') || 'light',
   dentists: [],
-  favs: [],
-}
+  favs: JSON.parse(localStorage.getItem('favs')) || [],
+};
 
 export const ContextGlobal = createContext();
 
