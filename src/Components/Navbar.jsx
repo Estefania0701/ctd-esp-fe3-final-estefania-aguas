@@ -1,16 +1,16 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { ContextGlobal } from './utils/global.context';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material';
 import { routes } from './utils/routes';
+import '../Styles/Navbar.css';
+import { useGlobalContext } from './utils/global.context';
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Navbar = () => {
 
-  const { state, dispatch } = useContext(ContextGlobal);
+  const { state, dispatch } = useGlobalContext();
 
   const toggleTheme = () => {
     const newTheme = state.theme === 'light' ? 'dark' : 'light';
@@ -18,24 +18,23 @@ const Navbar = () => {
     localStorage.setItem('theme', newTheme);
   };
 
-
+  const themeClass = state.theme === 'light' ? 'light-theme' : 'dark-theme';
+  
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" style={{ flexGrow: 1 }}>
-          Tu Dentista
-        </Typography>
-        <Button color="inherit" component={Link} to={routes.home}>Home</Button>
-        <Button color="inherit" component={Link} to={routes.favs}>Favoritos</Button>
-        <Button color="inherit" component={Link} to={routes.contact}>Contacto</Button>
-        <Button color="inherit" onClick={toggleTheme}>
-          {state.theme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
-        </Button>
-
-      </Toolbar>
-    </AppBar>
-
-  )
+    <nav className={`navbar ${themeClass}`}>
+      <div className="navbar-brand">Tu Dentista</div>
+      <ul className="navbar-links">
+        <li><Link to={routes.home}>Home</Link></li>
+        <li><Link to={routes.favs}>Favoritos</Link></li>
+        <li><Link to={routes.contact}>Contacto</Link></li>
+        <li>
+          <button onClick={toggleTheme} className="theme-toggle">
+            {state.theme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
 }
 
 export default Navbar

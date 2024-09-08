@@ -1,4 +1,4 @@
-import { createContext, useMemo, useReducer } from "react";
+import { createContext, useContext, useEffect, useMemo, useReducer } from "react";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -23,12 +23,10 @@ export const ContextProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const contextValue = useMemo(() => {
-    return {
-      state,
-      dispatch,
-    };
-  }, [state]);
+  // Guardamos el tema actual en localStorage cada vez que cambia
+  useEffect(() => {
+    localStorage.setItem('theme', state.theme);
+  }, [state.theme]);
 
   return (
     <ContextGlobal.Provider value={{state, dispatch}}>
@@ -36,3 +34,5 @@ export const ContextProvider = ({ children }) => {
     </ContextGlobal.Provider>
   );
 };
+
+export const useGlobalContext = () => useContext(ContextGlobal);

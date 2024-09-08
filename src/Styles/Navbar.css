@@ -1,0 +1,55 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    width: -webkit-fill-available;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.navbar.light-theme {
+    background-color: #b8e2e6;
+    color: #000000;
+}
+
+.navbar.dark-theme {
+    background-color: #243343;
+    color: #ffffff;
+}
+
+.navbar.light .theme-toggle svg {
+    fill: #000000;
+}
+
+.navbar.dark .theme-toggle svg {
+    fill: #ffffff;
+}
+
+.navbar .navbar-links a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: inherit;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .navbar-links a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
