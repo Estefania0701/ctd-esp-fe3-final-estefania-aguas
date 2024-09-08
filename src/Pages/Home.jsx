@@ -1,16 +1,23 @@
 import React from 'react'
 import { useGlobalContext } from '../Components/utils/global.context';
 import '../Styles/App.css';
+import Card from '../Components/Card';
 
 const Home = () => {
 
   const { state } = useGlobalContext();
+  console.log("home: ", state);
   
   const themeClass = state.theme === 'dark' ? 'dark-theme' : 'light-theme';
 
   return (
     <div className={`home ${themeClass}`}>
-        Home
+      <h1>Conoce nuestros dentistas</h1>
+      <div className="card-grid">
+        {state.dentists.map((dentist) => (
+          <Card key={dentist.id} dentist={dentist} />
+        ))}
+        </div>
     </div>
   )
 }

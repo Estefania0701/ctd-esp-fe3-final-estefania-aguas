@@ -1,11 +1,14 @@
+import axios from "axios";
 import { createContext, useContext, useEffect, useMemo, useReducer } from "react";
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "CHANGE_THEME":
       return { ...state, theme: action.theme };
-    case "ADD_DATA":
-      return { ...state, data: [...state.data, action.data] };
+    case "GET_DENTISTS":
+      return { ...state, dentists: action.dentists };
+    case "ADD_FAV":
+      return { ...state, favs: [...state.favs, action.fav] };
     default:
       throw new Error(`Acción no soportada: ${action.type}`);
   }
@@ -13,7 +16,8 @@ const reducer = (state, action) => {
 
 export const initialState = {
   theme: localStorage.getItem('theme') || 'light',
-  data: []
+  dentists: [],
+  favs: [],
 }
 
 export const ContextGlobal = createContext();
@@ -23,13 +27,20 @@ export const ContextProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  // Guardamos el tema actual en localStorage cada vez que cambia
+  const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+
   useEffect(() => {
+    axios(apiUrl).then((response) => {
+      console.log(response.data);
+      dispatch({ type: 'GET_DENTISTS', dentists: response.data });
+    });
+
     localStorage.setItem('theme', state.theme);
   }, [state.theme]);
 
+
   return (
-    <ContextGlobal.Provider value={{state, dispatch}}>
+    <ContextGlobal.Provider value={{ state, dispatch }}>
       {children}
     </ContextGlobal.Provider>
   );

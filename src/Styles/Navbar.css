@@ -33,11 +33,11 @@
     color: #ffffff;
 }
 
-.navbar.light .theme-toggle svg {
+.navbar.light-theme .theme-toggle svg {
     fill: #000000;
 }
 
-.navbar.dark .theme-toggle svg {
+.navbar.dark-theme .theme-toggle svg {
     fill: #ffffff;
 }
 
