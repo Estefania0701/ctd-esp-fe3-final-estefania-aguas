@@ -21,6 +21,7 @@ h2 {
 .contact,
 .details,
 .favs,
-.home {
+.home,
+.not-found {
   min-height: 80vh;
 }
