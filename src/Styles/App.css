@@ -18,6 +18,9 @@ h2 {
   padding-block: 1.5rem;
 }
 
-.contact, .details, .favs, .home {
+.contact,
+.details,
+.favs,
+.home {
   min-height: 80vh;
 }

@@ -41,7 +41,8 @@ form button:hover {
   background-color: #bcb9b9;
 }
 
-.form-error-message, .form-success-message {
+.form-error-message,
+.form-success-message {
   margin-top: 1rem;
   font-weight: bold;
 }

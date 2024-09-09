@@ -6,32 +6,32 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import '../Styles/Card.css';
 
-const Card = ({dentist}) => {
+const Card = ({ dentist }) => {
 
-  const {state, dispatch} = useGlobalContext();
+  const { state, dispatch } = useGlobalContext();
 
   const isFav = state.favs.find((fav) => fav.id === dentist.id);
 
-  const addFav = ()=>{
+  const addFav = () => {
     if (isFav) {
-      dispatch({type: 'REMOVE_FAV', fav: dentist});
+      dispatch({ type: 'REMOVE_FAV', fav: dentist });
     } else {
-        dispatch({type: 'ADD_FAV', fav: dentist});
+      dispatch({ type: 'ADD_FAV', fav: dentist });
     }
   }
 
   return (
     <div className="card">
-        <PersonIcon  fontSize='large'/>
-        <h3 className="card-title">
-          <Link to={`/dentist/${dentist.id}`}>
-              {dentist.name}
-          </Link>
-        </h3>
-        <p>{dentist.username}</p>
-        <button onClick={addFav} className="favButton">
-            {isFav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-        </button>
+      <PersonIcon fontSize='large' />
+      <h3 className="card-title">
+        <Link to={`/dentist/${dentist.id}`}>
+          {dentist.name}
+        </Link>
+      </h3>
+      <p>{dentist.username}</p>
+      <button onClick={addFav} className="favButton">
+        {isFav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+      </button>
     </div>
   );
 };

@@ -1,18 +1,58 @@
-import React from 'react'
-
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import React, { useEffect, useState } from 'react'
+import { useGlobalContext } from '../Components/utils/global.context';
+import CircularProgress from '@mui/material/CircularProgress';
+import '../Styles/App.css';
+import '../Styles/Details.css';
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Detail = () => {
- 
-  // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
+
+  const [dentist, setDentist] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  const { state } = useGlobalContext();
+  const themeClass = state.theme === 'dark' ? 'dark-theme' : 'light-theme';
+
+  const params = useParams();
+  const url = 'https://jsonplaceholder.typicode.com/users/' + params.id;
+
+  useEffect(() => {
+    axios(url).then((response) => {
+      setDentist(response.data);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    });
+  }, []);
 
   return (
-    <>
-      <h1>Detail Dentist id </h1>
-      {/* aqui deberan renderizar la informacion en detalle de un user en especifico */}
-      {/* Deberan mostrar el name - email - phone - website por cada user en especifico */}
-    </>
+    <div className={`details ${themeClass}`}>
+      <h1>Detalles del dentista</h1>
+      {loading ? <CircularProgress /> : (
+        <>
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Sitio web</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{dentist.name}</td>
+                <td>{dentist.email}</td>
+                <td>{dentist.phone}</td>
+                <td>{dentist.website}</td>
+              </tr>
+            </tbody>
+          </table>
+        </>
+      )
+      }
+    </div>
   )
 }
 

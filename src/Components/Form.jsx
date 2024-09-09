@@ -66,7 +66,6 @@ const Form = () => {
                             />
                         </div>
 
-
                         <div>
                             <label htmlFor="message">Tu mensaje</label>
                             <textarea
