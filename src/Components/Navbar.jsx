@@ -2,11 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import { routes } from './utils/routes';
 import '../Styles/Navbar.css';
 import { useGlobalContext } from './utils/global.context';
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Navbar = () => {
 
@@ -19,10 +18,13 @@ const Navbar = () => {
   };
 
   const themeClass = state.theme === 'light' ? 'light-theme' : 'dark-theme';
-  
+
   return (
     <nav className={`navbar ${themeClass}`}>
-      <div className="navbar-brand">Tu Dentista</div>
+      <div className="navbar-brand">
+        <span>TU DENTISTA</span>
+        <InsertEmoticonIcon fontSize='large' />
+      </div>
       <ul className="navbar-links">
         <li><Link to={routes.home}>Home</Link></li>
         <li><Link to={routes.favs}>Favoritos</Link></li>

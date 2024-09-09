@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { useGlobalContext } from '../Components/utils/global.context';
+import CircularProgress from '@mui/material/CircularProgress';
 import '../Styles/App.css';
+import '../Styles/Details.css';
 import {useParams} from "react-router-dom";
 import axios from "axios";
 
@@ -29,7 +31,8 @@ const DentistDetails = () => {
 
   return (
       <div className={`details ${themeClass}`}>
-        {loading ? 'Cargando...' : (
+        <h1>Detalles del dentista</h1>
+        {loading ?  <CircularProgress /> : (
             <>
               <table>
                 <thead>

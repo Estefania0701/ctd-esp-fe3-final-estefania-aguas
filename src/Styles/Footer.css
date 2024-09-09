@@ -1,0 +1,19 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #88875e;
+  height: 10vh;
+}
+
+footer div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer>div>img {
+  height: 40px;
+  margin: 0;
+}

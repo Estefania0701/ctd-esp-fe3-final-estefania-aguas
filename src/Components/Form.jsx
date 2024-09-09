@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 
 const Form = () => {
-  //Aqui deberan implementar el form completo con sus validaciones
+    //Aqui deberan implementar el form completo con sus validaciones
 
     const [user, setUser] = useState({
         name: '',
@@ -32,42 +32,35 @@ const Form = () => {
         setShowErrorMessage(true);
     }
 
-    const resetForm = () => {
-        setUser({
-            name: '',
-            email: '',
-            message: ''
-        });
-    }
-
     return (
         <>
             {!showForm && user ? (
-                <p>Gracias por tu mensaje, {user.name}!</p>
+                <p className="form-success-message">¡Gracias, {user.name}! Te contactaremos cuanto antes vía mail.</p>
             ) : (
                 <>
-                    <h2>Déjanos tus datos y te contactaremos</h2>
-
+                    <h2>Diligencia el siguiente formulario:</h2>
 
                     <form onSubmit={handleSubmit}>
 
                         <div>
-                            <label htmlFor="name">Tu nombre:</label>
+                            <label htmlFor="name">Tu nombre*</label>
                             <input
                                 type="text"
                                 name="name"
                                 id="name"
+                                placeholder="Escribe tu nombre aquí"
                                 value={user.name}
                                 onChange={handleChange}
                             />
                         </div>
 
                         <div>
-                            <label htmlFor="question">Tu email:</label>
+                            <label htmlFor="question">Tu email*</label>
                             <input
                                 type="email"
                                 name="email"
                                 id="email"
+                                placeholder="Escribe tu email aquí"
                                 value={user.email}
                                 onChange={handleChange}
                             />
@@ -75,10 +68,11 @@ const Form = () => {
 
 
                         <div>
-                            <label htmlFor="message">Tu mensaje:</label>
+                            <label htmlFor="message">Tu mensaje</label>
                             <textarea
                                 id="message"
                                 name="message"
+                                placeholder="Escribe tu mensaje aquí (opcional)"
                                 value={user.message}
                                 onChange={handleChange}
                             />
@@ -86,13 +80,11 @@ const Form = () => {
 
                         <button>Enviar</button>
                     </form>
-
-                    <button onClick={resetForm}>Borrar todo</button>
                 </>
             )}
 
             {showErrorMessage ? (
-                <p>Por favor, chequea que la información sea correcta' </p>
+                <p className="form-error-message">Por favor, chequea que la información sea correcta.</p>
             ) : null}
         </>
     );

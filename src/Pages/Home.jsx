@@ -1,6 +1,7 @@
 import React from 'react'
 import { useGlobalContext } from '../Components/utils/global.context';
 import '../Styles/App.css';
+import '../Styles/Home.css';
 import Card from '../Components/Card';
 
 const Home = () => {
@@ -12,7 +13,7 @@ const Home = () => {
   return (
     <div className={`home ${themeClass}`}>
       <h1>Conoce nuestros dentistas</h1>
-      <div className="card-grid">
+      <div className="card-container">
         {state.dentists.map((dentist) => (
           <Card key={dentist.id} dentist={dentist} />
         ))}

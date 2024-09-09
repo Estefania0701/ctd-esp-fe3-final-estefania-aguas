@@ -2,19 +2,41 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
     width: -webkit-fill-available;
+    height: 10vh;
+    font-size: 1.2rem;
+    padding-inline: 2rem;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-brand span {
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .navbar ul {
     list-style-type: none;
     display: flex;
-    gap: 20px;
+    gap: 2rem;
 }
 
-.navbar a {
+.navbar .navbar-links a {
     text-decoration: none;
     color: inherit;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .navbar-links a:hover {
+    background-color: rgba(255, 255, 255, 0.208);
 }
 
 .navbar button {
@@ -24,7 +46,7 @@
 }
 
 .navbar.light-theme {
-    background-color: #b8e2e6;
+    background-color: #acced1;
     color: #000000;
 }
 
@@ -34,22 +56,10 @@
 }
 
 .navbar.light-theme .theme-toggle svg {
-    fill: #000000;
+    fill: #145a6f;
 }
 
 .navbar.dark-theme .theme-toggle svg {
-    fill: #ffffff;
+    fill: #c1c14b;
 }
 
-.navbar .navbar-links a {
-    margin-right: 15px;
-    text-decoration: none;
-    color: inherit;
-    padding: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.navbar .navbar-links a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}

@@ -7,3 +7,17 @@
   background-color: #333333;
   color: #ffffff;
 }
+
+h1 {
+  font-size: 2rem;
+  padding-block: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  padding-block: 1.5rem;
+}
+
+.contact, .details, .favs, .home {
+  min-height: 80vh;
+}
