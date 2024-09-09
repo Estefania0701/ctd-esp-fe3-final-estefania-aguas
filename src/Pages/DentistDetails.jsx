@@ -22,11 +22,8 @@ const DentistDetails = () => {
         setDentist(response.data);
         setTimeout(() => {
             setLoading(false);
-        }, 2000);
-    })
-        .catch((error) => {
-            console.log(error);
-        });
+        }, 1000);
+    });
   }, []);
 
   return (

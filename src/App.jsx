@@ -19,7 +19,7 @@ function App() {
         <Route path={routes.favs} element={<Favs />} />
         <Route path={routes.contact} element={<Contact />} />
       </Routes>
-        <Footer/>
+      <Footer/>
     </>
   );
 }

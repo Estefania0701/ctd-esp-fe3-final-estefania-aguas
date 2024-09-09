@@ -11,8 +11,8 @@ const reducer = (state, action) => {
       localStorage.setItem('favs', JSON.stringify([...state.favs, action.fav]));
       return { ...state, favs: [...state.favs, action.fav] };
     case "REMOVE_FAV":
-        localStorage.setItem('favs', JSON.stringify(state.favs.filter((fav) => fav.id !== action.fav.id)));
-        return { ...state, favs: state.favs.filter((fav) => fav.id !== action.fav.id) };
+      localStorage.setItem('favs', JSON.stringify(state.favs.filter((fav) => fav.id !== action.fav.id)));
+      return { ...state, favs: state.favs.filter((fav) => fav.id !== action.fav.id) };
     default:
       throw new Error(`Acción no soportada: ${action.type}`);
   }
@@ -35,16 +35,21 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     axios(apiUrl).then((response) => {
-      console.log(response.data);
       dispatch({ type: 'GET_DENTISTS', dentists: response.data });
     });
 
     localStorage.setItem('theme', state.theme);
   }, [state.theme]);
 
+  // Memorizar el valor del contexto para evitar recrearlo en cada renderizado
+  const contextValue = useMemo(() => ({
+    state,
+    dispatch
+  }), [state, dispatch]);
+
 
   return (
-    <ContextGlobal.Provider value={{ state, dispatch }}>
+    <ContextGlobal.Provider value={ contextValue }>
       {children}
     </ContextGlobal.Provider>
   );
