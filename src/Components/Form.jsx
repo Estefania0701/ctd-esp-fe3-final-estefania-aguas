@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Message from "./Message";
 
 
 const Form = () => {
@@ -35,7 +36,7 @@ const Form = () => {
     return (
         <>
             {!showForm && user ? (
-                <p className="form-success-message">¡Gracias, {user.name}! Te contactaremos cuanto antes vía mail.</p>
+                <Message text={`¡Gracias, ${user.name}! Te contactaremos cuanto antes vía mail.`} type="success" />
             ) : (
                 <>
                     <h2>Diligencia el siguiente formulario:</h2>
@@ -82,8 +83,8 @@ const Form = () => {
                 </>
             )}
 
-            {showErrorMessage ? (
-                <p className="form-error-message">Por favor, chequea que la información sea correcta.</p>
+            {showErrorMessage ? (        
+                <Message text="Por favor, chequea que la información sea correcta." type="error" />
             ) : null}
         </>
     );

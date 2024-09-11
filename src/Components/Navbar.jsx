@@ -14,7 +14,6 @@ const Navbar = () => {
   const toggleTheme = () => {
     const newTheme = state.theme === 'light' ? 'dark' : 'light';
     dispatch({ type: 'CHANGE_THEME', theme: newTheme });
-    localStorage.setItem('theme', newTheme);
   };
 
   const themeClass = state.theme === 'light' ? 'light-theme' : 'dark-theme';

@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useMemo, useReducer } from "react
 const reducer = (state, action) => {
   switch (action.type) {
     case "CHANGE_THEME":
+      localStorage.setItem('theme', action.theme);
       return { ...state, theme: action.theme };
     case "GET_DENTISTS":
       return { ...state, dentists: action.dentists };
