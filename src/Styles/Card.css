@@ -20,7 +20,7 @@
 }
 
 .card:hover {
-    border: 0.5px solid rgb(206, 217, 142);
+    border: 0.5px solid  rgb(168, 177, 116);
 }
 
 .card-title {
@@ -34,4 +34,17 @@
     font-weight: bold;
     cursor: pointer;
     color: inherit;
+}
+
+.card-title a:hover {
+    color: rgb(168, 177, 116);
+}
+
+.card .fav-button {
+    background-color: rgba(136, 136, 136, 0.116);
+    color: rgb(201, 100, 100);
+    padding: 10px;
+    border: none;
+    width: 100%;
+    cursor: pointer;
 }

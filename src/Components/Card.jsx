@@ -29,7 +29,7 @@ const Card = ({ dentist }) => {
         </Link>
       </h3>
       <p>{dentist.username}</p>
-      <button onClick={addFav} className="favButton">
+      <button onClick={addFav} className="fav-button">
         {isFav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
       </button>
     </div>

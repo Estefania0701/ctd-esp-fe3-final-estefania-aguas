@@ -1,6 +1,7 @@
 import React from 'react'
 import { useGlobalContext } from '../Components/utils/global.context';
 import '../Styles/App.css';
+import '../Styles/NotFound.css';
 
 const NotFound = () => {
 
