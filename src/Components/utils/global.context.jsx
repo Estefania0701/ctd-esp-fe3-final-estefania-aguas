@@ -1,23 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useMemo, useReducer } from "react";
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "CHANGE_THEME":
-      localStorage.setItem('theme', action.theme);
-      return { ...state, theme: action.theme };
-    case "GET_DENTISTS":
-      return { ...state, dentists: action.dentists };
-    case "ADD_FAV":
-      localStorage.setItem('favs', JSON.stringify([...state.favs, action.fav]));
-      return { ...state, favs: [...state.favs, action.fav] };
-    case "REMOVE_FAV":
-      localStorage.setItem('favs', JSON.stringify(state.favs.filter((fav) => fav.id !== action.fav.id)));
-      return { ...state, favs: state.favs.filter((fav) => fav.id !== action.fav.id) };
-    default:
-      throw new Error(`Acción no soportada: ${action.type}`);
-  }
-}
+import { reducer } from "./reducer";
 
 export const initialState = {
   theme: localStorage.getItem('theme') || 'light',

@@ -12,7 +12,7 @@ const Card = ({ dentist }) => {
 
   const isFav = state.favs.find((fav) => fav.id === dentist.id);
 
-  const addFav = () => {
+  const editFav = () => {
     if (isFav) {
       dispatch({ type: 'REMOVE_FAV', fav: dentist });
     } else {
@@ -29,7 +29,7 @@ const Card = ({ dentist }) => {
         </Link>
       </h3>
       <p>{dentist.username}</p>
-      <button onClick={addFav} className="fav-button">
+      <button onClick={editFav} className="fav-button">
         {isFav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
       </button>
     </div>

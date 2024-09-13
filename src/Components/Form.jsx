@@ -26,7 +26,7 @@ const Form = () => {
         e.preventDefault();
         const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-        if (user.name.trim().length >= 5 && re.test(user.email)) {
+        if (user.name.trim().length > 5 && re.test(user.email)) {
             setShowForm(false);
             setShowErrorMessage(false);
             return;
